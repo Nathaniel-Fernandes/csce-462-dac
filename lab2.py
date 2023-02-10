@@ -1,10 +1,11 @@
 import time
 import math
-
 import board
 import busio
 import adafruit_mcp4725
-import RPi.GPIO
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
 
 i2c = busio.I2C(board.SCL, board.SDA)
 dac = adafruit_mcp4725.MCP4725(i2c)
@@ -19,6 +20,17 @@ def sin_wave():
         time.sleep(0.0005)
 
 def main():
-    # while wait for button press:
-        # ask for input: square, triangle, sin
-        # ask for the 
+    # GPIO.setup(40, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+    sin_wave()
+    # # while wait for button press:
+    # while True:
+    #     # ask for input: wave type, frequency, and output voltage
+    #     shape = input("Would you like a 'square', 'triangle', or 'sin' wave?")
+    #     frequency = input("What's the frequency?")
+    #     max_vout = input("What's the max output voltage?")
+
+    #     while True:
+
+    #         # if button press:
+    #             break
+
