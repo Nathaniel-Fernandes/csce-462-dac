@@ -20,17 +20,23 @@ def sin_wave():
         time.sleep(0.0005)
 
 def main():
-    # GPIO.setup(40, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
-    sin_wave()
-    # # while wait for button press:
-    # while True:
-    #     # ask for input: wave type, frequency, and output voltage
-    #     shape = input("Would you like a 'square', 'triangle', or 'sin' wave?")
-    #     frequency = input("What's the frequency?")
-    #     max_vout = input("What's the max output voltage?")
+    GPIO.setup(40, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
-    #     while True:
+    # wait for initial button press
+    GPIO.wait_for_edge(40, GPIO.rising)
 
-    #         # if button press:
-    #             break
+    while True:
+        # ask for input: wave type, frequency, and output voltage
+        shape = input("Would you like a 'square', 'triangle', or 'sin' wave?")
+        frequency = input("What's the frequency?")
+        max_vout = input("What's the max output voltage?")
+
+        while True:
+            
+            if shape == "sin":
+                sin_wave()
+                
+            # button press
+            if GPIO.input(40):
+                break
 
